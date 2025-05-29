@@ -1,5 +1,8 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { setUserData } from "../redux/userSlice"
+import axios from "axios"
+import { serverUrl } from "../main"
 
 const getCurrentUser=()=>{
     let dispatch=useDispatch()

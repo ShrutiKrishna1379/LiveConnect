@@ -48,7 +48,7 @@ function SignUp(){
           <input type="text" placeholder='username' className='w-[80%] h-[50px] outline-none border-2 border-[#e4cb0ac8] px-[20px] py-[10px] bg-[white] rounded-lg shadow-gray-200 shadow-lg text-gray-700 text-[19px]' onChange={(e)=>setUserName(e.target.value)} value={userName}/>
           <input type="email" placeholder='email' className='w-[80%] h-[50px] outline-none border-2 border-[#e4cb0ac8] px-[20px] py-[10px] bg-[white] rounded-lg shadow-gray-200 shadow-lg text-gray-700 text-[19px]' onChange={(e)=>setEmail(e.target.value)} value={email}/>
           <div className='w-[80%] h-[50px] border-2 border-[#e4cb0ac8] overflow-hidden rounded-lg shadow-gray-200 shadow-lg relative'>
-            <input type={`${show?"text":"password"}`} placeholder='password' className='w-full h-full outline-none px-[20px] py-[10px] bg-[white] rounded-lg text-gray-700 text-[19px]' onChange={(e)=>setPassword(e.target.value)} value={password}/>
+            <input type={`${show?"text":"password"}`} placeholder='password' className='w-full h-full outline-none px-[20px] py-[10px] bg-[white] rounded-lg text-gray-700 text-[19px]' onChange={(e)=>setPassword(e.target.value)} value={password} />
             <span className='absolute top-[10px] right-[20px] text-[19px] text-[#e4cb0ac8] font-semibold cursor-pointer' onClick={()=>setShow(prev=>!prev)}>{`${show?"hidden":"show"}`}</span>
           </div>
           
