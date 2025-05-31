@@ -2,8 +2,8 @@ import React from 'react'
 import SideBar from '../components/SideBar'
 import MessageArea from '../components/MessageArea'
 
-const Home = () => {
-  return (
+const Home=()=>{
+  return(
     <div className='w-full h-[100vh] flex'>
       <SideBar/>
       <MessageArea/>

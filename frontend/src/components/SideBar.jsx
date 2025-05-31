@@ -5,11 +5,11 @@ import { RxCross2 } from "react-icons/rx";
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-const SideBar = () => {
+const SideBar=()=>{
     let {userData}=useSelector(state => state.user)
     let navigate=useNavigate()
     let [search,setSearch]=useState(false)
-  return (
+  return(
     <div className='lg:w-[30%] w-full h-full bg-slate-200'>
         <div className='w-full h-[300px] bg-[#e4cb0ac8] rounded-b-[30%] shadow-gray-400 shadow-lg flex flex-col justify-center px-[20px]'>
             <h1 className='text-white font-bold text-[25px]'>LinkUp</h1>
