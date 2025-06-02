@@ -21,6 +21,7 @@ function Login(){
       let result=await axios.post(`${serverUrl}/api/auth/login`,{email,password},
       {withCredentials:true})
       dispatch(setUserData(result.data))
+      navigate("/")
       setEmail("")
       setPassword("")
       setLoading(false)
@@ -52,7 +53,7 @@ function Login(){
           {err && <p className='text-red-500 text-[20px] font-semibold'>{"*" + err }</p>}
 
           <button className='px-[20px] py-[10px] bg-[#e4cb0ac8] rounded-2xl shadow-gray-400 shadow-lg text-[20px] w-[200px] mt-[20px] font-semibold hover:shadow-inner' disabled={loading} >{loading?"Loading...":"Login"}</button>
-          <p className='cursor-pointer' onClick={()=>navigate("/signup")}>Want to create a new account ? <span className='text-[#b39b02c8] text-[bold]'>sign up</span></p>
+          <p className='cursor-pointer' onClick={()=>navigate("/signup")}>Want to create a new account ? <span className='text-[#b39b02c8] font-bold'>sign up</span></p>
         </form>
         
       </div>
