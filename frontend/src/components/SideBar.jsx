@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { serverUrl } from '../main';
-import { setOtherUsers, setUserData } from '../redux/userSlice';
+import { setOtherUsers, setSelectedUser, setUserData } from '../redux/userSlice';
 
 const SideBar=()=>{
-    let {userData,otherUsers}=useSelector(state => state.user)
+    let {userData,otherUsers,selectedUser}=useSelector(state => state.user)
     let navigate=useNavigate()
     let [search,setSearch]=useState(false)
     let dispatch=useDispatch()
@@ -27,7 +27,7 @@ const SideBar=()=>{
     }
 
   return(
-    <div className='lg:w-[30%] w-full h-full bg-slate-200'>
+    <div className={`lg:w-[30%] w-full h-full lg:block bg-slate-200 ${!selectedUser?"block":"hidden"}`}>
         <div className='w-[50px] h-[50px] mt-[10px] rounded-full overflow-hidden flex justify-center items-center bg-[#e4cb0ac8] shadow-gray-500 text-gray-700 shadow-lg cursor-pointer fixed bottom-[20px] left-[25px]' onClick={handleLogOut}>
             <BiLogOutCircle  className='w-[20px] h-[20px]'/>
         </div>
@@ -69,7 +69,7 @@ const SideBar=()=>{
 
         <div className='w-full h-[60vh] mt-[20px] items-center overflow-auto flex flex-col gap-[20px]'>
             {otherUsers?.map((user)=>(
-                <div className='w-[95%] h-[60px] flex items-center gap-[20px] shadow-gray-500 bg-white shadow-lg rounded-full hover:bg-[#f2dc7d] cursor-pointer'>
+                <div className='w-[95%] h-[60px] flex items-center gap-[20px] shadow-gray-500 bg-white shadow-lg rounded-full hover:bg-[#f2dc7d] cursor-pointer' onClick={()=>dispatch(setSelectedUser(user))}>
                     <div className='w-[60px] h-[60px] rounded-full overflow-hidden flex justify-center items-center shadow-gray-500 shadow-lg'>
                         <img src={user.image || dp} alt="" className='h-[100%]' />
                     </div>
