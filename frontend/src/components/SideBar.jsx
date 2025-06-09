@@ -9,7 +9,7 @@ import axios from 'axios';
 import { serverUrl } from '../main';
 import { setOtherUsers, setSelectedUser, setUserData } from '../redux/userSlice';
 
-const SideBar=()=>{
+function SideBar(){
     let {userData,otherUsers,selectedUser}=useSelector(state => state.user)
     let navigate=useNavigate()
     let [search,setSearch]=useState(false)

@@ -10,7 +10,7 @@ import axios from 'axios';
 import {serverUrl} from '../main'
 import { setUserData } from '../redux/userSlice';
 
-const Profile = () => {
+function Profile(){
   let {userData}=useSelector(state=>state.user)
   let dispatch=useDispatch()
   let navigate=useNavigate()

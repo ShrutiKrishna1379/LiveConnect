@@ -4,7 +4,7 @@ import { setOtherUsers } from "../redux/userSlice"
 import axios from "axios"
 import { serverUrl } from "../main"
 
-const getOtherUsers=()=>{
+function getOtherUsers(){
     let dispatch=useDispatch()
     let {userData}=useSelector((state)=>state.user)
     useEffect(()=>{

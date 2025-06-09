@@ -4,7 +4,7 @@ import { setUserData } from "../redux/userSlice"
 import axios from "axios"
 import { serverUrl } from "../main"
 
-const getCurrentUser=()=>{
+function getCurrentUser(){
     let dispatch=useDispatch()
     let {userData}=useSelector((state)=>state.user)
     useEffect(()=>{

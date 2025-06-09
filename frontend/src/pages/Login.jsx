@@ -21,6 +21,7 @@ function Login(){
       let result=await axios.post(`${serverUrl}/api/auth/login`,{email,password},
       {withCredentials:true})
       dispatch(setUserData(result.data))
+      dispatch(setSelectedUser(null))
       navigate("/")
       setEmail("")
       setPassword("")
