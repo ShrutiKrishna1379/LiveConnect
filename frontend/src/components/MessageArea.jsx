@@ -12,10 +12,11 @@ import { setSelectedUser } from '../redux/userSlice';
 import SenderMessage from './SenderMessage';
 import ReceiverMessage from './ReceiverMessage';
 import { setMessages } from '../redux/messageSlice';
+import { useEffect } from 'react';
 
 
 const MessageArea = () => {
-  let {selectedUser,userData}=useSelector(state=>state.user)
+  let {selectedUser,userData,socket}=useSelector(state=>state.user)
   let dispatch=useDispatch()
   let [showPicker,setShowPicker]=useState(false)
   let [input,setInput]=useState("")
@@ -32,6 +33,7 @@ const MessageArea = () => {
 
   const handleSendMessage= async(e)=>{
     e.preventDefault()
+    if(input.length==0 && backendImage==null) return null;
     try {
       let formData=new FormData()
       formData.append("message", input)
@@ -54,6 +56,13 @@ const MessageArea = () => {
     setShowPicker(false)
   }
 
+  useEffect(()=>{
+    socket.on("newMessage",(mess)=>{
+      dispatch(setMessages([...messages,mess]))
+    })
+    return ()=>socket.off("newMessage")
+  },[messages,setMessages])
+
   return (
     <div className={`lg:w-[70%] relative ${selectedUser?"flex":"hidden"} lg:flex w-full h-full bg-slate-200 border-l-2 border-gray-300`}>
 
@@ -69,10 +78,10 @@ const MessageArea = () => {
             <h1 className='text-white font-semibold text-[20px]'>{selectedUser?.name|| selectedUser?.userName}</h1> 
       </div>
 
-     <div className='w-full h-[550px] flex flex-col py-[30px] px-[20px] overflow-auto gap-[20px]'>
+     <div className='w-full h-[70%] flex flex-col py-[30px] px-[20px] overflow-auto gap-[20px]  '>
        {showPicker && 
          <div className='absolute bottom-[120px] left-[20px]'>
-           <EmojiPicker width={250} height={350} className='shodow-lg' onEmojiClick={onEmojiClick}/>
+           <EmojiPicker width={250} height={350} className='shodow-lg z-[100]' onEmojiClick={onEmojiClick}/>
          </div>
        }  
         {messages && messages.map((mess) => (
@@ -105,10 +114,11 @@ const MessageArea = () => {
           <div onClick={()=>image.current.click()}>
             <FaImages className='w-[25px] h-[25px] text-white cursor-pointer'/>
           </div>
-          <button>
-            <IoSend className='w-[25px] h-[25px] text-white cursor-pointer'/>
-          </button>
-
+          {input.length>0 || backendImage!=null &&
+            (<button>
+              <IoSend className='w-[25px] h-[25px] text-white cursor-pointer'/>
+            </button>)
+          }
         </form>
       </div>
     }
